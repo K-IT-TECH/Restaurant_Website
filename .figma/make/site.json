@@ -1,0 +1,10 @@
+{
+  "description": "Offers a smooth, interactive restaurant website with easy navigation and multiple features to enhance user experience and engagement.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
