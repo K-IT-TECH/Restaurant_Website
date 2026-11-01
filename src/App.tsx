@@ -704,6 +704,8 @@ function FilterPanel({
           {prices.map((p) => (
             <button
               key={p}
+              type="button"
+              aria-pressed={priceFilter.includes(p)}
               onClick={() => togglePrice(p)}
               className="btn"
               style={{
@@ -724,6 +726,8 @@ function FilterPanel({
           {[3, 3.5, 4, 4.5].map((r) => (
             <button
               key={r}
+              type="button"
+              aria-pressed={ratingFilter === r}
               onClick={() => setRatingFilter(r)}
               className="btn"
               style={{
@@ -744,6 +748,8 @@ function FilterPanel({
           <span className="font-mono text-xs font-bold" style={{ color: "var(--accent)" }}>{maxDistance} mi</span>
         </div>
         <input
+          aria-label="Maximum distance in miles"
+          aria-valuetext={`${maxDistance} miles`}
           type="range" min={0.5} max={5} step={0.5} value={maxDistance}
           onChange={(e) => setMaxDistance(Number(e.target.value))}
           style={{ "--accent": "#f04e23" } as React.CSSProperties}
@@ -758,15 +764,17 @@ function FilterPanel({
         <p className="section-eyebrow mb-3">Options</p>
         <div className="space-y-3">
           <label className="toggle-wrap">
-            <div className={`toggle-track ${openOnly ? "on" : ""}`} onClick={() => setOpenOnly(!openOnly)}>
-              <div className="toggle-thumb" />
-            </div>
+            <button type="button" role="switch" aria-checked={openOnly} aria-label="Open now only"
+              className={`toggle-track ${openOnly ? "on" : ""}`} onClick={() => setOpenOnly(!openOnly)}>
+              <span className="toggle-thumb" aria-hidden="true" />
+            </button>
             <span style={{ fontSize: "0.85rem", fontWeight: 500, color: "var(--text)", cursor: "pointer" }}>Open now only</span>
           </label>
           <label className="toggle-wrap">
-            <div className={`toggle-track ${freeDelivery ? "on" : ""}`} onClick={() => setFreeDelivery(!freeDelivery)}>
-              <div className="toggle-thumb" />
-            </div>
+            <button type="button" role="switch" aria-checked={freeDelivery} aria-label="Free delivery"
+              className={`toggle-track ${freeDelivery ? "on" : ""}`} onClick={() => setFreeDelivery(!freeDelivery)}>
+              <span className="toggle-thumb" aria-hidden="true" />
+            </button>
             <span style={{ fontSize: "0.85rem", fontWeight: 500, color: "var(--text)", cursor: "pointer" }}>Free delivery</span>
           </label>
         </div>
